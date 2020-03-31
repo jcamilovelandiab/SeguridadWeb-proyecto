@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCuentaBancariaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información del rol</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                <h:form>
+                    <h:panelGrid columns="2">
+                      
+                        <h:outputLabel value="Banco:" for="nombreBanco" />
+                        <h:inputText class="form-control" id="nombreBanco" value="#{cuentaBancariaController.selected.nombreBanco}" title="#{bundle.EditCuentaBancariaTitle_nombreBanco}" required="true" requiredMessage="#{bundle.EditCuentaBancariaRequiredMessage_nombreBanco}"/>
+                        <h:outputLabel value="Numero de Tarjeta:" for="numeroTarjeta" />
+                        <h:inputText class="form-control" id="numeroTarjeta" value="#{cuentaBancariaController.selected.numeroTarjeta}" title="#{bundle.EditCuentaBancariaTitle_numeroTarjeta}" required="true" requiredMessage="#{bundle.EditCuentaBancariaRequiredMessage_numeroTarjeta}"/>
+                        <h:outputLabel value="CVC:" for="cvc" />
+                        <h:inputText class="form-control" id="cvc" value="#{cuentaBancariaController.selected.cvc}" title="#{bundle.EditCuentaBancariaTitle_cvc}" required="true" requiredMessage="#{bundle.EditCuentaBancariaRequiredMessage_cvc}"/>
+                        <h:outputLabel value="Fecha de Expiración:" for="fechaExpiracion" />
+                        <h:inputText class="form-control" id="fechaExpiracion" value="#{cuentaBancariaController.selected.fechaExpiracion}" title="#{bundle.EditCuentaBancariaTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.EditCuentaBancariaRequiredMessage_fechaExpiracion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                    </h:panelGrid>
+                     <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{cuentaBancariaController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{cuentaBancariaController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                </h:form>
+            </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

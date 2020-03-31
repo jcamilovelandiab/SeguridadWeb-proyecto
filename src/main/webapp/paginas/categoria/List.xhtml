@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCategoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Categoria</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{categoriaController.prepareCreate()}" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalCreate">
+                                Crear
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                 <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListCategoriaEmpty}" rendered="#{categoriaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{categoriaController.items.rowCount > 0}">
+                        <h:outputText value="#{categoriaController.pagination.pageFirstItem + 1}..#{categoriaController.pagination.pageLastItem + 1}/#{categoriaController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{categoriaController.previous}" value="#{bundle.Previous} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{categoriaController.next}" value="#{bundle.Next} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasNextPage}"/>&nbsp;
+                        
+                        <h:dataTable class="table table-sm table-light" value="#{categoriaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idCategoria}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre de Categoria"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Inventario"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idInventario}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{categoriaController.prepareView}" />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{categoriaController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{categoriaController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    
+                </h:form>
+            </div>
+            
+            
+            
+             <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Categoría</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <h:form>
+                                <div align="center" >
+
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="#{bundle.CreateCategoriaLabel_nombre}" for="nombre" />
+                                        <h:inputText class="form-control" id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.CreateCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_nombre}"/>
+                                        <h:outputLabel value="Inventario:" for="idInventario" />
+                                        <h:selectOneMenu class="form-control" id="idInventario" value="#{categoriaController.selected.idInventario}" title="#{bundle.CreateCategoriaTitle_idInventario}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_idInventario}">
+                                            <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                    </h:panelGrid>
+
+
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{categoriaController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{categoriaController.prepareList}" value="Ver Lista de Categorias" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+        </ui:define>
+    </ui:composition>
+
+</html>

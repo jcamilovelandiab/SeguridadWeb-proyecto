@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewVentasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Id Venta: "/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.idVentas}" title="#{bundle.ViewVentasTitle_idVentas}"/>
+                        <h:outputText value="#{bundle.ViewVentasLabel_fecha}"/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.fecha}" title="#{bundle.ViewVentasTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVentasLabel_subtotal}"/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.subtotal}" title="#{bundle.ViewVentasTitle_subtotal}"/>
+                        <h:outputText value="IVA: "/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.iva}" title="#{bundle.ViewVentasTitle_iva}"/>
+                        <h:outputText value="#{bundle.ViewVentasLabel_total}"/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.total}" title="#{bundle.ViewVentasTitle_total}"/>
+                        <h:outputText value="Status"/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.statusVenta}" title="#{bundle.ViewVentasTitle_statusVenta}"/>
+                        <h:outputText value="#{bundle.ViewVentasLabel_precio}"/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.precio}" title="#{bundle.ViewVentasTitle_precio}"/>
+                        <h:outputText value="#{bundle.ViewVentasLabel_cantidad}"/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.cantidad}" title="#{bundle.ViewVentasTitle_cantidad}"/>
+                        <h:outputText value="Cliente: "/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.idCliente}" title="#{bundle.ViewVentasTitle_idCliente}"/>
+                        <h:outputText value="Factura: "/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.idFactura}" title="#{bundle.ViewVentasTitle_idFactura}"/>
+                        <h:outputText value="Pago: "/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.idPago}" title="#{bundle.ViewVentasTitle_idPago}"/>
+                        <h:outputText value="Producto: "/>
+                        <h:outputText class="form-control" value="#{ventasController.selected.idProducto}" title="#{bundle.ViewVentasTitle_idProducto}"/>
+                    </h:panelGrid>
+                    <br />                     
+                        <h:commandLink class="btn btn-sm btn-info" action="#{ventasController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                </h:form>
+            </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

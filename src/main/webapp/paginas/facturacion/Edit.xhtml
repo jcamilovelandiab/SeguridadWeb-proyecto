@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información del facturación</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        
+                        <h:outputLabel value="#{bundle.EditFacturacionLabel_nombre}" for="nombre" />
+                        <h:inputText id="nombre" value="#{facturacionController.selected.nombre}" title="#{bundle.EditFacturacionTitle_nombre}" required="true"/>
+                        <h:outputLabel value="#{bundle.EditFacturacionLabel_descripcion}" for="descripcion" />
+                        <h:inputText id="descripcion" value="#{facturacionController.selected.descripcion}" title="#{bundle.EditFacturacionTitle_descripcion}" required="true" />
+                        <h:outputLabel value="#{bundle.EditFacturacionLabel_fecha}" for="fecha" />
+                        <h:inputText id="fecha" value="#{facturacionController.selected.fecha}" title="#{bundle.EditFacturacionTitle_fecha}" required="true" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.EditFacturacionLabel_rfc}" for="rfc" />
+                        <h:inputText id="rfc" value="#{facturacionController.selected.rfc}" title="#{bundle.EditFacturacionTitle_rfc}" required="true" />
+                    </h:panelGrid>
+                    <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{facturacionController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{facturacionController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                </h:form>
+            </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

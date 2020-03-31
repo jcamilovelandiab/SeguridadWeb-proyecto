@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCuentaBancariaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewCuentaBancariaLabel_idCuenta}"/>
+                        <h:outputText class="form-control" value="#{cuentaBancariaController.selected.idCuenta}" title="#{bundle.ViewCuentaBancariaTitle_idCuenta}"/>
+                        <h:outputText value="#{bundle.ViewCuentaBancariaLabel_nombreBanco}"/>
+                        <h:outputText class="form-control" value="#{cuentaBancariaController.selected.nombreBanco}" title="#{bundle.ViewCuentaBancariaTitle_nombreBanco}"/>
+                        <h:outputText value="#{bundle.ViewCuentaBancariaLabel_numeroTarjeta}"/>
+                        <h:outputText class="form-control" value="#{cuentaBancariaController.selected.numeroTarjeta}" title="#{bundle.ViewCuentaBancariaTitle_numeroTarjeta}"/>
+                        <h:outputText value="#{bundle.ViewCuentaBancariaLabel_cvc}"/>
+                        <h:outputText class="form-control" value="#{cuentaBancariaController.selected.cvc}" title="#{bundle.ViewCuentaBancariaTitle_cvc}"/>
+                        <h:outputText value="#{bundle.ViewCuentaBancariaLabel_fechaExpiracion}"/>
+                        <h:outputText class="form-control" value="#{cuentaBancariaController.selected.fechaExpiracion}" title="#{bundle.ViewCuentaBancariaTitle_fechaExpiracion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />                     
+                        <h:commandLink class="btn btn-sm btn-info" action="#{cuentaBancariaController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                </h:form>
+            </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
