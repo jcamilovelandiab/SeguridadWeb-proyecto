@@ -12,7 +12,7 @@ package jsf.validadores;
 public class CuentaBancariaValidator {
     
     private boolean validarFechaExpiracion(String fecha) throws Exception{
-        
+        return true;
     }
     
 }
